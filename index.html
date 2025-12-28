@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>মসজিদ গাইড</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Hind Siliguri', sans-serif; background:#e8f5e9; margin:0; }
+.container { max-width:420px; margin:auto; padding:20px; text-align:center; }
+.btn-card {
+    background:white; border-radius:18px; padding:25px 15px; margin:20px 0;
+    box-shadow:0 6px 15px rgba(0,0,0,0.07); border:2px solid #2e7d32;
+    color:#1b5e20; font-size:22px; font-weight:700; display:block;
+    cursor:pointer;
+}
+.btn-card i { font-size:40px; margin-bottom:8px; display:block; }
+.guide {
+    background:white; padding:12px; border-radius:10px; font-size:16px;
+    text-align:left; margin-top:20px; border-left:4px solid #2e7d32;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2 style="color:#1b5e20;">🕌 মসজিদ গাইড</h2>
+
+<div class="btn-card" onclick="findMosque()">
+    <i class="fas fa-location-arrow"></i>
+    কাছের মসজিদ দেখুন
+</div>
+
+<div class="guide">
+    <b>সহজ নিয়ম:</b><br>
+    1. বোতামে চাপ দিন<br>
+    2. একটি বক্স আসবে → <b style="color:#2e7d32;">ALLOW</b> চাপ দিন<br>
+    3. আপনার চারপাশের মসজিদ ম্যাপে দেখাবে
+</div>
+
+<p style="font-size:14px;color:#388e3c;margin-top:15px;">📍 লোকেশন ON রাখুন • 🌍 ইন্টারনেট চালু রাখুন</p>
+</div>
+
+<script>
+function findMosque() {
+    if (!navigator.geolocation) {
+        alert("❌ এই ফোন/ব্রাউজার লোকেশন সাপোর্ট করে না");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        () => {
+            window.open("https://www.google.com/maps/search/mosque+near+me/", "_blank");
+        },
+        (error) => {
+            if (error.code === 1) {
+                alert("📍 লোকেশন পারমিশন লাগবে\nবক্সে শুধু ALLOW চাপ দিন");
+            } else {
+                alert("⚠ লোকেশন পাওয়া যায়নি, GPS/Internet চেক করুন");
+            }
+        }
+    );
+}
+</script>
+
+</body>
+</html>
